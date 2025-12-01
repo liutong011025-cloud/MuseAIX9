@@ -1,0 +1,44 @@
+========================================
+  MuseAIWriteV2 - 快速上传到 GitHub
+========================================
+
+【重要】如果 Git 未安装，请先安装：
+1. 访问：https://git-scm.com/download/win
+2. 下载并安装 Git
+3. 重新打开 PowerShell
+
+【步骤 1】创建 GitHub Personal Access Token
+--------------------------------------------
+1. 访问：https://github.com/settings/tokens
+2. 点击 "Generate new token (classic)"
+3. 勾选 "repo" 权限
+4. 生成并复制 token（只显示一次！）
+
+【步骤 2】执行上传
+--------------------------------------------
+方法 A - 使用脚本（推荐）：
+1. 打开 PowerShell
+2. cd C:\Users\liut\Downloads\code
+3. .\push-to-github.ps1
+4. 输入 GitHub 用户名和 token
+
+方法 B - 手动命令：
+1. git init
+2. git remote add origin https://github.com/liutong011025-cloud/MuseAI.git
+3. git add .
+4. git commit -m "Initial commit: MuseAIWriteV2"
+5. git branch -M main
+6. git push -u origin main
+
+【步骤 3】验证
+--------------------------------------------
+访问：https://github.com/liutong011025-cloud/MuseAI
+查看代码是否已上传
+
+详细说明请查看：上传到GitHub步骤.md
+
+========================================
+
+
+
+

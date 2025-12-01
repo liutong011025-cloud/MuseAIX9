@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String        @id @default(cuid())
+  username     String        @unique
+  password     String
+  role         String        @default("student")
+  noAi         Boolean       @default(false)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+  interactions Interaction[]
+  letters      Letter[]
+  reviews      Review[]
+  stories      Story[]
+
+  @@map("users")
+}
+
+model Interaction {
+  id        String   @id @default(cuid())
+  userId    String
+  stage     String
+  timestamp DateTime @default(now())
+  apiCalls  Json?
+  input     Json?
+  output    Json?
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  letters   Letter?
+  reviews   Review?
+  stories   Story?
+
+  @@index([userId])
+  @@index([stage])
+  @@index([timestamp])
+  @@map("interactions")
+}
+
+model Story {
+  id            String       @id @default(cuid())
+  userId        String
+  interactionId String?      @unique
+  content       String       @default("")
+  character     Json?
+  plot          Json?
+  structure     Json?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @default(now()) @updatedAt
+  interactions  Interaction? @relation(fields: [interactionId], references: [id])
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("stories")
+}
+
+model Review {
+  id            String       @id @default(cuid())
+  userId        String
+  interactionId String?      @unique
+  content       String       @default("")
+  bookTitle     String?
+  reviewType    String?
+  coverImage    String?
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @default(now()) @updatedAt
+  bookCoverUrl  String?
+  bookSummary   String?
+  structure     Json?
+  interactions  Interaction? @relation(fields: [interactionId], references: [id])
+  user          User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("reviews")
+}
+
+model Letter {
+  id             String       @id @default(cuid())
+  userId         String
+  interactionId  String?      @unique
+  content        String       @default("")
+  recipient      String?
+  occasion       String?
+  readerImage    String?
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @default(now()) @updatedAt
+  guidance       String?
+  readerImageUrl String?
+  sections       Json?
+  interactions   Interaction? @relation(fields: [interactionId], references: [id])
+  user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("letters")
+}

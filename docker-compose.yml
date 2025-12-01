@@ -1,0 +1,22 @@
+services:
+  # Next.js 应用服务
+  code:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: museaiwrite-code
+    ports:
+      - "3000:3000"
+    volumes:
+      # 挂载代码目录，实现热重载
+      # 注意：不挂载 node_modules，使用容器内的（包含正确的原生模块）
+      - .:/app
+      - /app/node_modules
+      - /app/.next
+    environment:
+      - NODE_ENV=development
+      - DATABASE_URL=postgresql://postgres:museaiwrite123@172.17.0.2:5432/museaiwrite?schema=public
+    restart: unless-stopped
+    network_mode: bridge
+    command: npm run dev
+

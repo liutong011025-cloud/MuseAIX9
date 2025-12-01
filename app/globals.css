@@ -1,0 +1,561 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Child-friendly vibrant colors */
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0 0);
+  --font-comic-neue: var(--font-comic-neue);
+  --font-patrick-hand: var(--font-patrick-hand);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.48 0.3 264);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.62 0.25 46);
+  --secondary-foreground: oklch(1 0 0);
+  --muted: oklch(0.92 0.02 0);
+  --muted-foreground: oklch(0.55 0 0);
+  --accent: oklch(0.55 0.28 142);
+  --accent-foreground: oklch(1 0 0);
+  --destructive: oklch(0.58 0.25 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.01 0);
+  --input: oklch(0.95 0 0);
+  --ring: oklch(0.48 0.3 264);
+  --chart-1: oklch(0.48 0.3 264);
+  --chart-2: oklch(0.55 0.28 142);
+  --chart-3: oklch(0.62 0.25 46);
+  --chart-4: oklch(0.65 0.25 307);
+  --chart-5: oklch(0.52 0.28 53);
+  --radius: 0.875rem;
+  --sidebar: oklch(0.98 0 0);
+  --sidebar-foreground: oklch(0.15 0 0);
+  --sidebar-primary: oklch(0.48 0.3 264);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.55 0.28 142);
+  --sidebar-accent-foreground: oklch(1 0 0);
+  --sidebar-border: oklch(0.9 0.01 0);
+  --sidebar-ring: oklch(0.48 0.3 264);
+  --font-sans: var(--font-comic-neue), "Comic Neue", "Comic Sans MS", cursive;
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+}
+
+.dark {
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.18 0 0);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.18 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.62 0.28 264);
+  --primary-foreground: oklch(0.12 0 0);
+  --secondary: oklch(0.72 0.23 46);
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.3 0.01 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.65 0.26 142);
+  --accent-foreground: oklch(0.12 0 0);
+  --destructive: oklch(0.52 0.22 27);
+  --destructive-foreground: oklch(0.96 0 0);
+  --border: oklch(0.25 0.01 0);
+  --input: oklch(0.22 0.01 0);
+  --ring: oklch(0.62 0.28 264);
+  --chart-1: oklch(0.62 0.28 264);
+  --chart-2: oklch(0.65 0.26 142);
+  --chart-3: oklch(0.72 0.23 46);
+  --chart-4: oklch(0.68 0.25 307);
+  --chart-5: oklch(0.62 0.26 53);
+  --sidebar: oklch(0.15 0 0);
+  --sidebar-foreground: oklch(0.96 0 0);
+  --sidebar-primary: oklch(0.62 0.28 264);
+  --sidebar-primary-foreground: oklch(0.96 0 0);
+  --sidebar-accent: oklch(0.65 0.26 142);
+  --sidebar-accent-foreground: oklch(0.96 0 0);
+  --sidebar-border: oklch(0.25 0.01 0);
+  --sidebar-ring: oklch(0.62 0.28 264);
+}
+
+@theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Child-friendly animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* 蛋裂动画 */
+@keyframes crack-1 {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+@keyframes crack-2 {
+  0% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.3) rotate(-5deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.6) rotate(-10deg);
+    opacity: 0;
+  }
+}
+
+.animate-crack-1 {
+  animation: crack-1 0.8s ease-out forwards;
+}
+
+.animate-crack-2 {
+  animation: crack-2 0.8s ease-out 0.2s forwards;
+}
+
+/* 画笔动画 */
+@keyframes paint-brush {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  50% {
+    transform: translateX(10px) rotate(5deg);
+  }
+}
+
+.animate-paint-brush {
+  animation: paint-brush 2s ease-in-out infinite;
+}
+
+/* 音符飘动 */
+@keyframes music-note {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-30px) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+.animate-music-note {
+  animation: music-note 3s ease-in-out infinite;
+}
+
+/* 蛋抖动动画 */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  10% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  20% {
+    transform: translateX(5px) rotate(2deg);
+  }
+  30% {
+    transform: translateX(-5px) rotate(-2deg);
+  }
+  40% {
+    transform: translateX(5px) rotate(2deg);
+  }
+  50% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  60% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  70% {
+    transform: translateX(-3px) rotate(-1deg);
+  }
+  80% {
+    transform: translateX(3px) rotate(1deg);
+  }
+  90% {
+    transform: translateX(-2px) rotate(-0.5deg);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+/* 纸张翻页动画 */
+@keyframes pageFlip {
+  0% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+  50% {
+    transform: perspective(1000px) rotateY(-5deg);
+  }
+  100% {
+    transform: perspective(1000px) rotateY(0deg);
+  }
+}
+
+.animate-page-flip {
+  animation: pageFlip 0.6s ease-in-out;
+}
+
+/* 翻页效果工具类 */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-y-0 {
+  transform: rotateY(0deg);
+}
+
+.rotate-y-12 {
+  transform: rotateY(12deg);
+}
+
+.rotate-y-neg-12 {
+  transform: rotateY(-12deg);
+}
+
+/* 滚动条隐藏 */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* 自定义滚动条样式 */
+.scrollbar-purple {
+  scrollbar-width: thin;
+  scrollbar-color: #a855f7 #f3e8ff;
+}
+
+.scrollbar-purple::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-purple::-webkit-scrollbar-track {
+  background: #f3e8ff;
+  border-radius: 4px;
+}
+
+.scrollbar-purple::-webkit-scrollbar-thumb {
+  background: #a855f7;
+  border-radius: 4px;
+}
+
+.scrollbar-purple::-webkit-scrollbar-thumb:hover {
+  background: #9333ea;
+}
+
+/* 打字机效果 */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink {
+  0%, 50% {
+    border-color: transparent;
+  }
+  51%, 100% {
+    border-color: currentColor;
+  }
+}
+
+.animate-typing {
+  animation: typing 3s steps(40, end), blink 0.75s step-end infinite;
+}
+
+/* 闪烁效果 */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+/* 渐变流动 */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradient-flow 3s ease infinite;
+}
+
+/* 按钮弹跳动画 - 可爱动效 */
+@keyframes bounce-in {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.05) rotate(2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes wiggle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+/* 轻微跳动动画 */
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-gentle-bounce {
+  animation: gentle-bounce 2s ease-in-out infinite;
+}
+
+@keyframes slideUpFromDoor {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 按钮悬停脉冲效果 */
+@keyframes button-pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(147, 51, 234, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(147, 51, 234, 0);
+  }
+}
+
+/* Book Review Welcome 页面动效 */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  to {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 1s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: fade-in 1s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.8s ease-out forwards;
+  opacity: 0;
+}
+
+/* 手写动画 */
+@keyframes handwriting {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes write-letter {
+  0% {
+    width: 0;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-handwriting {
+  animation: handwriting 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.animate-write-letter {
+  animation: write-letter 2s ease-in-out forwards;
+  overflow: hidden;
+  white-space: nowrap;
+}
